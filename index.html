@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Endometriosis Solution Waitlist</title>
+<meta name="description" content="Join the waitlist for an explainable AI tool that detects superficial peritoneal endometriosis in laparoscopic images.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: split hero (copy + form left, illustrated laparoscope field right), then audience cards and a research strip. */
+:root {
+  --bg: #F2F4F5;
+  --surface: #FFFFFF;
+  --ink: #12262E;
+  --muted: #4E636B;
+  --line: #D3DCDF;
+  --accent: #B8325A;
+  --accent-ink: #FFFFFF;
+  --teal: #0F5C63;
+  --tint: #E7EFF0;
+  --focus: #0F5C63;
+  --ok: #1B6B45;
+  --err: #A3262B;
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Public Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0E1A1F; --surface: #15262D; --ink: #E6EEF0; --muted: #9DB2BA; --line: #2A414B;
+    --accent: #E2668A; --accent-ink: #1A0910; --teal: #5CC1C8; --tint: #1B313A; --focus: #5CC1C8;
+    --ok: #6FD0A0; --err: #FF8F93; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0E1A1F; --surface: #15262D; --ink: #E6EEF0; --muted: #9DB2BA; --line: #2A414B;
+  --accent: #E2668A; --accent-ink: #1A0910; --teal: #5CC1C8; --tint: #1B313A; --focus: #5CC1C8;
+  --ok: #6FD0A0; --err: #FF8F93; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: 16px; line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 1120px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 700; line-height: 1.08; margin: 0; text-wrap: balance; letter-spacing: -0.015em; }
+p { margin: 0; }
+a { color: var(--teal); }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; border-radius: 4px; }
+
+/* header */
+.top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 22px; }
+.mark { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 700; font-size: 18px; letter-spacing: -0.01em; }
+.mark svg { width: 26px; height: 26px; flex: none; }
+.tag { font-family: var(--font-mono); font-size: 12px; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--line); padding: 5px 10px; border-radius: 999px; white-space: nowrap; }
+
+/* hero */
+.hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: clamp(28px, 5vw, 64px); align-items: start; padding-block: clamp(20px, 4vw, 48px) clamp(48px, 7vw, 88px); }
+.eyebrow { font-family: var(--font-mono); font-size: 12.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); margin-bottom: 18px; }
+h1 { font-size: clamp(36px, 5.4vw, 60px); }
+h1 em { font-style: normal; color: var(--accent); }
+.lede { margin-top: 20px; font-size: clamp(17px, 1.6vw, 19px); color: var(--muted); max-width: 54ch; }
+
+/* form */
+.card { margin-top: 30px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: clamp(18px, 3vw, 28px); box-shadow: 0 1px 0 var(--line), 0 18px 40px -28px rgba(10, 30, 40, .35); }
+.card h2 { font-size: 22px; margin-bottom: 4px; }
+.card .sub { color: var(--muted); font-size: 14.5px; margin-bottom: 18px; }
+fieldset { border: 0; padding: 0; margin: 0 0 16px; min-width: 0; }
+legend, label.l { display: block; font-size: 13.5px; font-weight: 600; margin-bottom: 8px; padding: 0; }
+.opt { font-weight: 400; color: var(--muted); }
+.chips { position: relative; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.chips input { position: absolute; opacity: 0; pointer-events: none; }
+.chips label { display: block; border: 1px solid var(--line); background: var(--bg); border-radius: 10px; padding: 10px 12px; font-size: 14px; line-height: 1.3; cursor: pointer; transition: border-color .15s, background .15s; }
+.chips label:hover { border-color: var(--teal); }
+.chips input:checked + label { border-color: var(--accent); background: var(--tint); box-shadow: inset 0 0 0 1px var(--accent); font-weight: 600; }
+.chips input:focus-visible + label { outline: 3px solid var(--focus); outline-offset: 2px; }
+.row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.field { margin-bottom: 14px; min-width: 0; }
+input[type=text], input[type=email], textarea {
+  width: 100%; font: inherit; font-size: 15px; color: var(--ink); background: var(--bg);
+  border: 1px solid var(--line); border-radius: 10px; padding: 11px 12px;
+}
+textarea { min-height: 84px; resize: vertical; }
+input::placeholder, textarea::placeholder { color: var(--muted); opacity: .75; }
+.consent { display: flex; gap: 10px; align-items: flex-start; font-size: 13.5px; color: var(--muted); margin-bottom: 18px; }
+.consent input { margin-top: 3px; width: 17px; height: 17px; accent-color: var(--accent); flex: none; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+button.go {
+  width: 100%; font: inherit; font-weight: 600; font-size: 16px; cursor: pointer;
+  background: var(--accent); color: var(--accent-ink); border: 0; border-radius: 10px; padding: 14px 18px;
+  transition: transform .12s ease, filter .15s;
+}
+button.go:hover { filter: brightness(1.06); }
+button.go:active { transform: translateY(1px); }
+button.go[disabled] { opacity: .65; cursor: progress; }
+.status { margin-top: 12px; font-size: 14px; min-height: 1.4em; }
+.status.err { color: var(--err); }
+.status.note { color: var(--muted); }
+.done { text-align: left; }
+.done h2 { margin-bottom: 8px; }
+.done p { color: var(--muted); }
+.fine { margin-top: 12px; font-size: 12.5px; color: var(--muted); }
+
+/* scope illustration */
+.scope-wrap { position: sticky; top: 24px; }
+.scope { position: relative; width: 100%; max-width: 520px; margin-inline: auto; aspect-ratio: 1; border-radius: 50%; overflow: hidden; background: #0a0505;
+  box-shadow: 0 0 0 10px var(--surface), 0 0 0 11px var(--line), 0 30px 60px -30px rgba(10, 30, 40, .55); }
+.tissue { position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 45% at 30% 28%, rgba(255, 214, 205, .55), transparent 62%),
+    radial-gradient(ellipse 50% 40% at 72% 70%, rgba(150, 40, 60, .45), transparent 66%),
+    radial-gradient(circle at 50% 50%, #e9a798 0%, #d98a80 45%, #b9625d 80%, #7a3436 100%); }
+.vein { position: absolute; inset: 0; opacity: .5; mix-blend-mode: multiply; }
+.lesion { position: absolute; left: 53%; top: 47%; width: 15%; aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 46% 54% 50% 50%;
+  background: radial-gradient(circle at 40% 38%, #5a1a18, #2a0b0b 70%); filter: blur(.4px); box-shadow: 0 0 0 5px rgba(120, 50, 40, .28), 0 0 18px 6px rgba(90, 20, 20, .25); }
+.heat { position: absolute; left: 53%; top: 47%; width: 58%; aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%; mix-blend-mode: screen; opacity: .85;
+  background: radial-gradient(circle, rgba(255, 70, 30, .95) 0%, rgba(255, 170, 20, .75) 22%, rgba(90, 220, 120, .45) 42%, rgba(40, 130, 255, .25) 60%, transparent 72%); filter: blur(6px); animation: breathe 6s ease-in-out infinite; }
+@keyframes breathe { 0%, 100% { transform: translate(-50%, -50%) scale(1); } 50% { transform: translate(-50%, -50%) scale(1.05); } }
+.sheen { position: absolute; inset: 0; background: radial-gradient(ellipse 30% 14% at 28% 22%, rgba(255, 255, 255, .5), transparent 70%), radial-gradient(ellipse 18% 8% at 70% 80%, rgba(255, 255, 255, .22), transparent 70%); mix-blend-mode: soft-light; }
+.vignette { position: absolute; inset: 0; background: radial-gradient(circle, transparent 58%, rgba(0, 0, 0, .78) 82%, #000 100%); }
+.outline { position: absolute; inset: 0; width: 100%; height: 100%; }
+.legend { position: absolute; left: 50%; bottom: 7%; transform: translateX(-50%); display: flex; gap: 14px; font-family: var(--font-mono); font-size: 11px; color: #f3e7e3; white-space: nowrap; }
+.legend i { display: inline-block; width: 18px; height: 0; border-top: 2px dashed #fff; vertical-align: middle; margin-right: 6px; }
+.legend b { display: inline-block; width: 14px; height: 8px; margin-right: 6px; border-radius: 2px; vertical-align: middle; background: linear-gradient(90deg, #2c82ff, #5ade78, #ffaa14, #ff4620); }
+.cap { margin: 22px auto 0; max-width: 520px; font-size: 13px; color: var(--muted); }
+.cap strong { color: var(--ink); font-weight: 600; }
+
+/* sections */
+section.band { padding-block: clamp(48px, 7vw, 84px); border-top: 1px solid var(--line); }
+.band h2 { font-size: clamp(28px, 3.6vw, 40px); max-width: 22ch; }
+.band .intro { margin-top: 14px; color: var(--muted); max-width: 62ch; }
+.cards { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-top: 34px; }
+.aud { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.aud svg { width: 30px; height: 30px; color: var(--teal); }
+.aud h3 { font-size: 19px; }
+.aud p { font-size: 14.5px; color: var(--muted); }
+.aud .get { margin-top: auto; padding-top: 12px; border-top: 1px solid var(--line); font-size: 13.5px; color: var(--ink); }
+.steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; margin-top: 34px; }
+.steps h3 { font-size: 20px; margin-bottom: 8px; }
+.steps p { color: var(--muted); font-size: 15px; }
+.steps .k { font-family: var(--font-mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+
+.nums { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; margin-top: 34px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); overflow: hidden; }
+.num { padding: 22px 20px; border-right: 1px solid var(--line); min-width: 0; }
+.num:last-child { border-right: 0; }
+.num .v { font-family: var(--font-mono); font-weight: 500; font-size: clamp(26px, 3vw, 34px); letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.num .d { margin-top: 6px; font-size: 13.5px; color: var(--muted); }
+.src { margin-top: 14px; font-size: 13px; color: var(--muted); max-width: 90ch; }
+
+
+footer { border-top: 1px solid var(--line); padding-block: 30px 40px; font-size: 13px; color: var(--muted); }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 32px; justify-content: space-between; }
+footer p { max-width: 70ch; }
+
+@media (max-width: 960px) {
+  .hero { grid-template-columns: minmax(0, 1fr); }
+  .scope-wrap { position: static; order: -1; }
+  .scope { max-width: 340px; }
+  .cards, .nums { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .num:nth-child(2) { border-right: 0; }
+  .num:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+  .steps { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 560px) {
+  .row, .cards { grid-template-columns: minmax(0, 1fr); }
+  .legend { font-size: 9.5px; gap: 8px; }
+  .tag { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { .heat { animation: none; } html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<header class="wrap top">
+  <div class="mark">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="19" cy="14" r="5.2" fill="var(--accent)"/><circle cx="19" cy="14" r="9" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="2.4 2.4"/></svg>
+    <span>Endometriosis Solution</span>
+  </div>
+  <span class="tag">Research prototype</span>
+</header>
+
+<main>
+<section class="wrap hero" id="top">
+  <div>
+    <p class="eyebrow">Early access list</p>
+    <h1>An AI that finds endometriosis lesions in surgery video, and <em>shows its working</em>.</h1>
+    <p class="lede">Superficial peritoneal endometriosis is small, subtle and easy to miss at laparoscopy. We are building an explainable deep learning tool that flags it and highlights the region it looked at, so clinicians can check the reasoning instead of trusting a score.</p>
+
+    <div class="card" id="signup">
+      <div id="formView">
+        <h2>Join the waitlist</h2>
+        <p class="sub">Early access, research updates and invitations to demos. No spam, and you can leave any time.</p>
+        <form id="wl" novalidate autocomplete="on">
+          <fieldset>
+            <legend>I am a&hellip;</legend>
+            <div class="chips" role="radiogroup" aria-label="I am a">
+              <input type="radio" name="audience" id="a1" value="Biotech or pharma company"><label for="a1">Biotech or pharma company</label>
+              <input type="radio" name="audience" id="a2" value="Insurer or health payer"><label for="a2">Insurer or health payer</label>
+              <input type="radio" name="audience" id="a3" value="Student or educator"><label for="a3">Student or educator</label>
+              <input type="radio" name="audience" id="a4" value="Researcher or clinician"><label for="a4">Researcher or clinician</label>
+              <input type="radio" name="audience" id="a5" value="Enthusiast, keen to learn"><label for="a5">Enthusiast, keen to learn</label>
+              <input type="radio" name="audience" id="a6" value="Something else"><label for="a6">Something else</label>
+            </div>
+          </fieldset>
+          <div class="row">
+            <div class="field"><label class="l" for="name">Full name</label><input type="text" id="name" name="name" placeholder="Your name" autocomplete="name" required></div>
+            <div class="field"><label class="l" for="email">Email</label><input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required></div>
+          </div>
+          <div class="field"><label class="l" for="org">Organisation or university <span class="opt">(optional)</span></label><input type="text" id="org" name="organisation" autocomplete="organization"></div>
+          <div class="field"><label class="l" for="interest">What would you most like to hear about? <span class="opt">(optional)</span></label><textarea id="interest" name="interest" placeholder="Partnerships, validation data, teaching material, how the explanations work&hellip;"></textarea></div>
+          <div class="hp" aria-hidden="true"><label for="website">Leave this empty</label><input type="text" id="website" name="website" tabindex="-1" autocomplete="off"></div>
+          <label class="consent" for="consent"><input type="checkbox" id="consent" name="consent"><span>I agree that my details are stored to contact me about this project.</span></label>
+          <button class="go" id="submit" type="submit">Join the waitlist</button>
+          <p class="status" id="status" role="status" aria-live="polite"></p>
+        </form>
+        <p class="fine">Research prototype. It is not a medical device and is not for clinical use.</p>
+      </div>
+      <div id="doneView" class="done" hidden>
+        <h2>You are on the list.</h2>
+        <p id="doneMsg">Thank you. We will email you when there is something to try or read.</p>
+      </div>
+    </div>
+  </div>
+
+  <aside class="scope-wrap" aria-label="Illustration of a model attention overlay on a laparoscopic view">
+    <div class="scope">
+      <div class="tissue"></div>
+      <svg class="vein" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <g fill="none" stroke="#7a1f2b" stroke-linecap="round" stroke-width=".55">
+          <path d="M8 38 C24 34 30 50 44 46 S66 30 92 36"/><path d="M14 66 C30 60 38 74 54 68 S78 58 90 64"/>
+          <path d="M30 14 C34 30 28 40 38 52 S46 80 40 94"/><path d="M70 10 C66 26 76 36 68 50 S78 72 72 92"/>
+        </g>
+      </svg>
+      <div class="lesion"></div>
+      <div class="heat"></div>
+      <div class="sheen"></div>
+      <div class="vignette"></div>
+      <svg class="outline" viewBox="0 0 100 100" aria-hidden="true"><ellipse cx="53" cy="47" rx="9.2" ry="8.4" fill="none" stroke="#fff" stroke-width=".6" stroke-dasharray="1.6 1.2"/></svg>
+      <div class="legend"><span><i></i>expert outline</span><span><b></b>model attention</span></div>
+    </div>
+    <p class="cap"><strong>Illustration, not patient data.</strong> The tool will show a heatmap of where the model looked, next to the clinician's own view, so the reasoning can be checked.</p>
+  </aside>
+</section>
+
+<section class="band" id="who">
+  <div class="wrap">
+    <h2>Who the waitlist is for</h2>
+    <p class="intro">Endometriosis takes seven to ten years to diagnose on average. The people who can shorten that include these four groups.</p>
+    <div class="cards">
+      <article class="aud">
+        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3h8M13 3v9l-7 13a3 3 0 0 0 2.7 4.4h14.6A3 3 0 0 0 26 25l-7-13V3"/><path d="M9.5 20h13"/></svg>
+        <h3>Biotech and pharma</h3>
+        <p>Imaging biomarkers for trials, and lesion detection that can be audited.</p>
+        <p class="get">You get: briefings on the method, validation and collaboration options.</p>
+      </article>
+      <article class="aud">
+        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M16 3l11 4v8c0 7-4.6 11.6-11 14C9.6 26.6 5 22 5 15V7z"/><path d="M11 16l4 4 7-8"/></svg>
+        <h3>Insurers and payers</h3>
+        <p>Earlier, better documented diagnosis may reduce years of repeat visits and tests.</p>
+        <p class="get">You get: plain-language summaries of what the evidence does and does not show.</p>
+      </article>
+      <article class="aud">
+        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 12l14-7 14 7-14 7z"/><path d="M8 15v7c0 2 4 4 8 4s8-2 8-4v-7"/></svg>
+        <h3>Students and educators</h3>
+        <p>A worked example of explainable AI on real surgical images, with open methods.</p>
+        <p class="get">You get: teaching-friendly explainers and the demo interface.</p>
+      </article>
+      <article class="aud">
+        <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="14" cy="14" r="8"/><path d="M20 20l8 8"/><path d="M14 10v8M10 14h8"/></svg>
+        <h3>Curious readers</h3>
+        <p>Want to understand how a model can point at what it saw, and where it still fails?</p>
+        <p class="get">You get: occasional short updates, written for non-specialists.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="how">
+  <div class="wrap">
+    <h2>What we are building</h2>
+    <div class="steps">
+      <div><p class="k">Detect</p><h3>A classifier for subtle lesions</h3><p>A general model screens frames for endometriosis, and a second model is specialised for the superficial peritoneal form, which is the hardest to see.</p></div>
+      <div><p class="k">Explain</p><h3>Heatmaps you can check</h3><p>Every prediction comes with an attention map, scored against expert-drawn lesion outlines so we can tell when the explanation is poor.</p></div>
+      <div><p class="k">Try</p><h3>A browser demo</h3><p>Upload a frame, see the prediction, the confidence and the overlay in seconds. Waitlist members get first access.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="evidence">
+  <div class="wrap">
+    <h2>Early results from the research</h2>
+    <div class="nums">
+      <div class="num"><div class="v">0.995</div><div class="d">Mean AUC of the best general model, patient-wise 5-fold cross-validation</div></div>
+      <div class="num"><div class="v">0.9999</div><div class="d">Mean AUC of the model specialised for peritoneal lesions</div></div>
+      <div class="num"><div class="v">373</div><div class="d">Expert-annotated samples used to score the explanations</div></div>
+      <div class="num"><div class="v">12 / 14</div><div class="d">External images detected in a small, preliminary check</div></div>
+    </div>
+    <p class="src">Results are from the project's evaluation on the public GLENDA v1.5 laparoscopy dataset. The external check used 14 images, 3 of them AI-generated and not clinically verified. These are research results, not clinical performance.</p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Endometriosis Solution is a research prototype. It is not a medical device and must not be used to diagnose or treat any condition. Your details are used only to contact you about this project.</p>
+    <p><a href="#top">Back to top</a></p>
+  </div>
+</footer>
+
+<script>
+/* ------------------------------------------------------------------
+   CONFIG: paste your Google Apps Script web-app URL here (see Code.gs).
+   While this is empty the form runs in preview mode and sends nothing.
+------------------------------------------------------------------- */
+const ENDPOINT = "https://script.google.com/macros/s/AKfycbwN5P10ACJRRioWik_pcP4amn0Uqt5eVxLe-ngDl_TafS-FehOySosqawK88gf5HN-P/exec";
+
+const form = document.getElementById("wl");
+const statusEl = document.getElementById("status");
+const btn = document.getElementById("submit");
+const formView = document.getElementById("formView");
+const doneView = document.getElementById("doneView");
+const doneMsg = document.getElementById("doneMsg");
+const STORE_KEY = "endo-waitlist-joined";
+
+function setStatus(msg, kind) { statusEl.textContent = msg || ""; statusEl.className = "status" + (kind ? " " + kind : ""); }
+function showDone(msg) { if (msg) doneMsg.textContent = msg; formView.hidden = true; doneView.hidden = false; }
+
+try { if (localStorage.getItem(STORE_KEY)) showDone("You have already joined from this browser. Thank you, we will be in touch."); } catch (e) {}
+
+form.addEventListener("submit", async (ev) => {
+  ev.preventDefault();
+  setStatus("");
+  const f = new FormData(form);
+  const data = {
+    audience: f.get("audience") || "",
+    name: (f.get("name") || "").trim(),
+    email: (f.get("email") || "").trim(),
+    organisation: (f.get("organisation") || "").trim(),
+    interest: (f.get("interest") || "").trim(),
+    website: f.get("website") || ""
+  };
+  if (data.website) { showDone(); return; }                       // honeypot: bots fill it, people never see it
+  if (!data.audience) { setStatus("Choose the option that best describes you.", "err"); return; }
+  if (!data.name) { setStatus("Please enter your name.", "err"); document.getElementById("name").focus(); return; }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(data.email)) { setStatus("Please enter a valid email address.", "err"); document.getElementById("email").focus(); return; }
+  if (!document.getElementById("consent").checked) { setStatus("Please tick the box so we can store your details.", "err"); return; }
+
+  btn.disabled = true; btn.textContent = "Joining…";
+  try {
+    if (!ENDPOINT) {
+      await new Promise(r => setTimeout(r, 500));
+      setStatus("Preview mode: this page is not connected to your Google Sheet yet, so nothing was sent. Paste your Apps Script URL into ENDPOINT to go live.", "note");
+      btn.disabled = false; btn.textContent = "Join the waitlist";
+      return;
+    }
+    const body = new URLSearchParams({
+      name: data.name, email: data.email, organisation: data.organisation,
+      audience: data.audience, interest: data.interest,
+      page: location.href.slice(0, 200)
+    });
+    // Apps Script web apps do not send CORS headers, so the reply is opaque (no-cors).
+    await fetch(ENDPOINT, { method: "POST", mode: "no-cors", body });
+    try { localStorage.setItem(STORE_KEY, "1"); } catch (e) {}
+    showDone("Thank you, " + data.name.split(" ")[0] + ". We will email " + data.email + " when there is something to try or read.");
+  } catch (err) {
+    setStatus("Something went wrong and your details were not saved. Check your connection and try again.", "err");
+    btn.disabled = false; btn.textContent = "Join the waitlist";
+  }
+});
+</script>
+</body>
+</html>
